@@ -15,6 +15,16 @@ const authController = {
       return res.status(resData.code).json(resData);
     }
   },
+  register: async (req, res) => {
+    try {
+      const data = await authService.register(req);
+      const resData = responseSuccess(data, "Đăng ký thành công", 200);
+      return res.status(resData.code).json(resData);
+    } catch (error) {
+      const resData = responseError(error.message, 401);
+      return res.status(resData.code).json(resData);
+    }
+  },
 };
 
 export default authController;
